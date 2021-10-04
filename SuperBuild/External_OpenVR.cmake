@@ -83,4 +83,15 @@ mark_as_superbuild(
   VARS
     ${proj}_INCLUDE_DIR:PATH
     ${proj}_LIBRARY:FILEPATH
+  PROJECTS
+    ${SUPERBUILD_TOPLEVEL_PROJECT}
+    VTK
+  )
+
+set(VTK_MODULE_ENABLE_VTK_RenderingOpenVR TRUE)
+mark_as_superbuild(
+  VARS
+    VTK_MODULE_ENABLE_VTK_RenderingOpenVR:BOOL
+  PROJECTS
+    VTK
   )
