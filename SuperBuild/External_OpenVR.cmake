@@ -88,10 +88,10 @@ mark_as_superbuild(
     VTK
   )
 
-set(VTK_MODULE_ENABLE_VTK_RenderingOpenVR TRUE)
+set(VTK_MODULE_ENABLE_VTK_RenderingOpenVR YES)
 mark_as_superbuild(
   VARS
-    VTK_MODULE_ENABLE_VTK_RenderingOpenVR:BOOL
+    VTK_MODULE_ENABLE_VTK_RenderingOpenVR:STRING
   PROJECTS
     VTK
   )
