@@ -85,7 +85,25 @@ mark_as_superbuild(
     ${proj}_LIBRARY:FILEPATH
   PROJECTS
     ${SUPERBUILD_TOPLEVEL_PROJECT}
+    iMSTK
+    ITK
     VTK
+  )
+
+get_filename_component(${proj}_ROOT_DIR ${${proj}_INCLUDE_DIR} DIRECTORY)
+set(${proj}_LIB_DIR "bin/linux64")
+set(${proj}_INC_DIR "headers")
+ExternalProject_Message(${proj} "${proj}_ROOT_DIR:${${proj}_ROOT_DIR}")
+ExternalProject_Message(${proj} "${proj}_LIB_DIR:${${proj}_LIB_DIR}")
+ExternalProject_Message(${proj} "${proj}_INC_DIR:${${proj}_INC_DIR}")
+
+mark_as_superbuild(
+  VARS
+    ${proj}_ROOT_DIR:PATH
+    ${proj}_LIB_DIR:STRING
+    ${proj}_INC_DIR:STRING
+  PROJECTS
+    iMSTK
   )
 
 set(VTK_MODULE_ENABLE_VTK_RenderingOpenVR YES)

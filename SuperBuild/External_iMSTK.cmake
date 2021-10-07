@@ -2,6 +2,14 @@ set(proj iMSTK)
 
 # Set dependency list
 set(${proj}_DEPENDS
+  Assimp
+  g3log
+  LibNiFalcon
+  Libusb
+  OpenVR
+  tbb
+  VegaFEM
+  VTK
   )
 
 # Include dependent projects if any
@@ -12,36 +20,33 @@ if(${SUPERBUILD_TOPLEVEL_PROJECT}_USE_SYSTEM_${proj})
 endif()
 
 # Sanity checks
-if(DEFINED Foo_DIR AND NOT EXISTS ${Foo_DIR})
-  message(FATAL_ERROR "Foo_DIR [${Foo_DIR}] variable is defined but corresponds to nonexistent directory")
+if(DEFINED ${proj}_DIR AND NOT EXISTS ${${proj}_DIR})
+  message(FATAL_ERROR "${proj}_DIR [${${proj}_DIR}] variable is defined but corresponds to nonexistent directory")
 endif()
 
 if(NOT DEFINED ${proj}_DIR AND NOT ${SUPERBUILD_TOPLEVEL_PROJECT}_USE_SYSTEM_${proj})
 
   ExternalProject_SetIfNotDefined(
     ${SUPERBUILD_TOPLEVEL_PROJECT}_${proj}_GIT_REPOSITORY
-    "https://gitlab.kitware.com/iMSTK/iMSTK.git"
+    "${EP_GIT_PROTOCOL}://github.com/jcfr/iMSTK"
     QUIET
     )
 
   ExternalProject_SetIfNotDefined(
     ${SUPERBUILD_TOPLEVEL_PROJECT}_${proj}_GIT_TAG
-    "slicer-tbb-compatible"
+    "19510a7b9d848aecf7b8275ef5cd721a19868e28" # update-build-system-to-streamline-application-integration
     QUIET
     )
 
-  set(${proj}_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj})
-  set(${proj}_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
-  set(${proj}_RUNTIME_OUTPUT_DIRECTORY ${${proj}_BINARY_DIR}/bin)
-  set(${proj}_LIBRARY_OUTPUT_DIRECTORY ${${proj}_BINARY_DIR}/lib)
-  set(${proj}_ARCHIVE_OUTPUT_DIRECTORY ${${proj}_BINARY_DIR}/lib)
+  set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj})
+  set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
 
   ExternalProject_Add(${proj}
     ${${proj}_EP_ARGS}
     GIT_REPOSITORY "${${SUPERBUILD_TOPLEVEL_PROJECT}_${proj}_GIT_REPOSITORY}"
     GIT_TAG "${${SUPERBUILD_TOPLEVEL_PROJECT}_${proj}_GIT_TAG}"
-    SOURCE_DIR ${${proj}_SOURCE_DIR}
-    BINARY_DIR ${${proj}_BINARY_DIR}
+    SOURCE_DIR ${EP_SOURCE_DIR}
+    BINARY_DIR ${EP_BINARY_DIR}
     CMAKE_CACHE_ARGS
       # Compiler settings
       -DCMAKE_C_COMPILER:FILEPATH=${CMAKE_C_COMPILER}
@@ -52,16 +57,18 @@ if(NOT DEFINED ${proj}_DIR AND NOT ${SUPERBUILD_TOPLEVEL_PROJECT}_USE_SYSTEM_${p
       -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=${CMAKE_CXX_STANDARD_REQUIRED}
       -DCMAKE_CXX_EXTENSIONS:BOOL=${CMAKE_CXX_EXTENSIONS}
       # Output directories
-      -DCMAKE_RUNTIME_OUTPUT_DIRECTORY:PATH=${${proj}_RUNTIME_OUTPUT_DIRECTORY}
-      -DCMAKE_LIBRARY_OUTPUT_DIRECTORY:PATH=${${proj}_LIBRARY_OUTPUT_DIRECTORY}
-      -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY:PATH=${${proj}_ARCHIVE_OUTPUT_DIRECTORY}
-      # iMSTK vars
-      -DiMSTK_SUPERBUILD:BOOL=ON
-      -DUSE_SYSTEM_VTK:BOOL=ON
-      -DBUILD_TESTING:BOOL=OFF
-      -DBUILD_EXAMPLES:BOOL=OFF
+      -DCMAKE_RUNTIME_OUTPUT_DIRECTORY:PATH=${EP_BINARY_DIR}/bin
+      -DCMAKE_LIBRARY_OUTPUT_DIRECTORY:PATH=${EP_BINARY_DIR}/lib
+      -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY:PATH=${EP_BINARY_DIR}/lib
+      # Options
+      -DiMSTK_SUPERBUILD:BOOL=OFF
+      -DiMSTK_BUILD_TESTING:BOOL=OFF
+      -DiMSTK_BUILD_EXAMPLES:BOOL=OFF
+      -DiMSTK_USE_MODEL_REDUCTION:BOOL=OFF
       # Dependencies
       -DVTK_DIR:PATH=${VTK_DIR}
+      -Dtbb_ROOT_DIR:PATH=${TBB_INSTALL_DIR}/tbb${tbb_ver}
+      -Dtbb_LIB_DIR:STRING=${tbb_libdir}
     INSTALL_COMMAND ""
     DEPENDS
       ${${proj}_DEPENDS}

@@ -21,7 +21,11 @@ else()
 endif()
 
 # macOS initialization
-set(CMAKE_MODULE_PATH ${slicersources_SOURCE_DIR}/CMake ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH
+  ${CMAKE_CURRENT_SOURCE_DIR}/CMake
+  ${slicersources_SOURCE_DIR}/CMake
+  ${CMAKE_MODULE_PATH}
+  )
 include(SlicerInitializeOSXVariables)
 
 project(CustomAppIMSTK)
@@ -49,8 +53,18 @@ ExternalProject_Add_Dependencies(VTK
     OpenVR
   )
 
+# Additional external project options
+set(VTK_MODULE_ENABLE_VTK_RenderingExternal YES)
+mark_as_superbuild(
+  VARS
+    VTK_MODULE_ENABLE_VTK_RenderingExternal:STRING
+  PROJECTS
+    VTK
+  )
+
 # Additional Slicer dependencies looked up in EXTERNAL_PROJECT_ADDITIONAL_DIR
 set(Slicer_ADDITIONAL_DEPENDENCIES
+  iMSTK
   )
 
 #  Enable listed remote modules from ITK 
