@@ -1,16 +1,36 @@
 set(proj iMSTK)
 
-# Set dependency list
-set(${proj}_DEPENDS
+set(_slicer_depends
+  tbb
+  VTK
+  )
+set(_imstk_depends
   Assimp
   g3log
   LibNiFalcon
   Libusb
   OpenVR
-  tbb
   VegaFEM
-  VTK
   )
+
+# Set dependency list
+set(${proj}_DEPENDS
+  ${_slicer_depends}
+  ${_imstk_depends}
+  )
+
+if(NOT SB_SECOND_PASS)
+  mark_as_superbuild(
+    VARS
+      CMAKE_CXX_COMPILER:FILEPATH
+      CMAKE_C_COMPILER:FILEPATH
+      CMAKE_CXX_STANDARD:STRING
+      CMAKE_CXX_STANDARD_REQUIRED:BOOL
+      CMAKE_CXX_EXTENSIONS:BOOL
+    PROJECTS
+      ${_imstk_depends}
+  )
+endif()
 
 # Include dependent projects if any
 ExternalProject_Include_Dependencies(${proj} PROJECT_VAR proj)

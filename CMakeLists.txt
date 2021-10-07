@@ -29,7 +29,7 @@ set(${proj}_SOURCE_DIR "${CMAKE_BINARY_DIR}/${proj}")
 FetchContent_Populate(${proj}
   SOURCE_DIR     ${${proj}_SOURCE_DIR}
   GIT_REPOSITORY git://github.com/jcfr/iMSTK.git
-  GIT_TAG        19510a7b9d848aecf7b8275ef5cd721a19868e28  # update-build-system-to-streamline-application-integration
+  GIT_TAG        e0a8b8898b32adeebdafd76ec4b201239e6e26c8  # update-build-system-to-streamline-application-integration
   GIT_PROGRESS   1
   QUIET
   )
