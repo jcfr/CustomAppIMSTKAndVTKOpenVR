@@ -20,12 +20,28 @@ else()
   set(slicersources_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/slicersources-subbuild)
 endif()
 
-# macOS initialization
+# Fetch sources of external projects providing CMake modules
+# required at configuration time.
+
+# iMSTK
+set(proj "iMSTK")
+set(${proj}_SOURCE_DIR "${CMAKE_BINARY_DIR}/${proj}")
+FetchContent_Populate(${proj}
+  SOURCE_DIR     ${${proj}_SOURCE_DIR}
+  GIT_REPOSITORY git://github.com/jcfr/iMSTK.git
+  GIT_TAG        19510a7b9d848aecf7b8275ef5cd721a19868e28  # update-build-system-to-streamline-application-integration
+  GIT_PROGRESS   1
+  QUIET
+  )
+
 set(CMAKE_MODULE_PATH
-  ${CMAKE_CURRENT_SOURCE_DIR}/CMake
+  ${iMSTK_SOURCE_DIR}/CMake
+  ${iMSTK_SOURCE_DIR}/CMake/Utilities
   ${slicersources_SOURCE_DIR}/CMake
   ${CMAKE_MODULE_PATH}
   )
+
+# macOS initialization
 include(SlicerInitializeOSXVariables)
 
 project(CustomAppIMSTK)

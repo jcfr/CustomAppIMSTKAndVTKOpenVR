@@ -26,25 +26,16 @@ endif()
 
 if(NOT DEFINED ${proj}_DIR AND NOT ${SUPERBUILD_TOPLEVEL_PROJECT}_USE_SYSTEM_${proj})
 
-  ExternalProject_SetIfNotDefined(
-    ${SUPERBUILD_TOPLEVEL_PROJECT}_${proj}_GIT_REPOSITORY
-    "${EP_GIT_PROTOCOL}://github.com/jcfr/iMSTK"
-    QUIET
-    )
+  # Sanity checks
+  if(NOT EXISTS "${${proj}_SOURCE_DIR}")
+    message(FATAL_ERROR "${proj}_SOURCE_DIR [${${proj}_SOURCE_DIR}] variable is corresponds to nonexistent directory")
+  endif()
 
-  ExternalProject_SetIfNotDefined(
-    ${SUPERBUILD_TOPLEVEL_PROJECT}_${proj}_GIT_TAG
-    "19510a7b9d848aecf7b8275ef5cd721a19868e28" # update-build-system-to-streamline-application-integration
-    QUIET
-    )
-
-  set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj})
+  set(EP_SOURCE_DIR ${${proj}_SOURCE_DIR})
   set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
 
   ExternalProject_Add(${proj}
     ${${proj}_EP_ARGS}
-    GIT_REPOSITORY "${${SUPERBUILD_TOPLEVEL_PROJECT}_${proj}_GIT_REPOSITORY}"
-    GIT_TAG "${${SUPERBUILD_TOPLEVEL_PROJECT}_${proj}_GIT_TAG}"
     SOURCE_DIR ${EP_SOURCE_DIR}
     BINARY_DIR ${EP_BINARY_DIR}
     CMAKE_CACHE_ARGS
