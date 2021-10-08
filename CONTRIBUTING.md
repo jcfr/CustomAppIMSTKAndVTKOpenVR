@@ -1,17 +1,17 @@
-Contributing to CustomAppIMSTKAndVTKOpenVR
+Contributing to CustomAppIMSTK
 ===============================
 
-There are many ways to contribute to CustomAppIMSTKAndVTKOpenVR.
+There are many ways to contribute to CustomAppIMSTK.
 
-  * Submit a feature request or bug, or add to the discussion on the [CustomAppIMSTKAndVTKOpenVR issue tracker][is]
-  * Submit a [Pull Request][pr] to improve CustomAppIMSTKAndVTKOpenVR.
+  * Submit a feature request or bug, or add to the discussion on the [CustomAppIMSTK issue tracker][is]
+  * Submit a [Pull Request][pr] to improve CustomAppIMSTK.
 
 The PR Process, and Related Gotchas
 -----------------------------------
 
 #### How to submit a PR ?
 
-If you are new to CustomAppIMSTKAndVTKOpenVR development and you don't have push access to the CustomAppIMSTKAndVTKOpenVR
+If you are new to CustomAppIMSTK development and you don't have push access to the CustomAppIMSTK
 repository, here are the steps:
 
 1. [Fork and clone][fk] the repository.
@@ -28,8 +28,8 @@ and will facilitate other developers to checkout your topic without having to
 [configure a remote](https://help.github.com/articles/configuring-a-remote-for-a-fork/).
 It will also simplify the workflow when you are _co-developing_ a branch.
 
-When submitting a PR, make sure to add a `Cc: @CustomAppIMSTKAndVTKOpenVR/developers` comment to
-notify CustomAppIMSTKAndVTKOpenVR developers of your awesome contributions. Based on the
+When submitting a PR, make sure to add a `Cc: @CustomAppIMSTK/developers` comment to
+notify CustomAppIMSTK developers of your awesome contributions. Based on the
 comments posted by the reviewers, you may have to revisit your patches.
 
 ### How to integrate a PR ?
@@ -43,7 +43,7 @@ and a reasonable amount of time passed without anyone objecting. `LGTM` is an
 acronym for _Looks Good to Me_.
 
 Next, there are two scenarios:
-* You do NOT have push access: A CustomAppIMSTKAndVTKOpenVR core developer will integrate your PR.
+* You do NOT have push access: A CustomAppIMSTK core developer will integrate your PR.
 * You have push access: Simply click on the "Merge pull request" button.
 
 Then, click on the "Delete branch" button that appears afterward.
@@ -51,5 +51,5 @@ Then, click on the "Delete branch" button that appears afterward.
 
 [fk]: http://help.github.com/forking/
 [push]: https://help.github.com/articles/pushing-to-a-remote/
-[pr]: https://github.com/Kitware/CustomAppIMSTKAndVTKOpenVR/merge_requests
-[is]: https://github.com/Kitware/CustomAppIMSTKAndVTKOpenVR/issues
+[pr]: https://github.com/Kitware/CustomAppIMSTK/merge_requests
+[is]: https://github.com/Kitware/CustomAppIMSTK/issues

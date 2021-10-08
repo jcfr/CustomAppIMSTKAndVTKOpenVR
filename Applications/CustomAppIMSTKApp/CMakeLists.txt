@@ -16,7 +16,7 @@
 #
 #============================================================================
 
-project(CustomAppIMSTKAndVTKOpenVRApp)
+project(CustomAppIMSTKApp)
 
 include(SlicerMacroBuildApplication)
 
@@ -36,14 +36,14 @@ set(${PROJECT_NAME}_FOLDER "App-${PROJECT_NAME}")
 set(APPLIB_NAME "q${PROJECT_NAME}")
 
 set(APPLIB_SRCS
-  qCustomAppIMSTKAndVTKOpenVRAppMainWindow.cxx
-  qCustomAppIMSTKAndVTKOpenVRAppMainWindow.h
+  qCustomAppIMSTKAppMainWindow.cxx
+  qCustomAppIMSTKAppMainWindow.h
   Widgets/qAppStyle.cxx
   Widgets/qAppStyle.h
   )
 
 set(APPLIB_MOC_SRCS
-  qCustomAppIMSTKAndVTKOpenVRAppMainWindow.h
+  qCustomAppIMSTKAppMainWindow.h
   Widgets/qAppStyle.h
   )
 

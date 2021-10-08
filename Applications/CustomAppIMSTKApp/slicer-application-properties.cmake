@@ -1,6 +1,6 @@
 
 set(APPLICATION_NAME
-  CustomAppIMSTKAndVTKOpenVR
+  CustomAppIMSTK
   )
 
 set(VERSION_MAJOR
@@ -31,5 +31,5 @@ set(WIN_ICON_FILE
   )
 
 set(LICENSE_FILE
-  "${CustomAppIMSTKAndVTKOpenVR_SOURCE_DIR}/LICENSE"
+  "${CustomAppIMSTK_SOURCE_DIR}/LICENSE"
   )

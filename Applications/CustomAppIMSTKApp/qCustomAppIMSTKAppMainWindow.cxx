@@ -15,9 +15,9 @@
 
 ==============================================================================*/
 
-// CustomAppIMSTKAndVTKOpenVR includes
-#include "qCustomAppIMSTKAndVTKOpenVRAppMainWindow.h"
-#include "qCustomAppIMSTKAndVTKOpenVRAppMainWindow_p.h"
+// CustomAppIMSTK includes
+#include "qCustomAppIMSTKAppMainWindow.h"
+#include "qCustomAppIMSTKAppMainWindow_p.h"
 
 // Qt includes
 #include <QDesktopWidget>
@@ -29,30 +29,30 @@
 #include "qSlicerModuleSelectorToolBar.h"
 
 //-----------------------------------------------------------------------------
-// qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate methods
+// qCustomAppIMSTKAppMainWindowPrivate methods
 
-qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate::qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate(qCustomAppIMSTKAndVTKOpenVRAppMainWindow& object)
+qCustomAppIMSTKAppMainWindowPrivate::qCustomAppIMSTKAppMainWindowPrivate(qCustomAppIMSTKAppMainWindow& object)
   : Superclass(object)
 {
 }
 
 //-----------------------------------------------------------------------------
-qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate::~qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate()
+qCustomAppIMSTKAppMainWindowPrivate::~qCustomAppIMSTKAppMainWindowPrivate()
 {
 }
 
 //-----------------------------------------------------------------------------
-void qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate::init()
+void qCustomAppIMSTKAppMainWindowPrivate::init()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 #endif
-  Q_Q(qCustomAppIMSTKAndVTKOpenVRAppMainWindow);
+  Q_Q(qCustomAppIMSTKAppMainWindow);
   this->Superclass::init();
 }
 
 //-----------------------------------------------------------------------------
-void qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate::setupUi(QMainWindow * mainWindow)
+void qCustomAppIMSTKAppMainWindowPrivate::setupUi(QMainWindow * mainWindow)
 {
   qSlicerApplication * app = qSlicerApplication::application();
 
@@ -60,7 +60,7 @@ void qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate::setupUi(QMainWindow * main
   // Add actions
   //----------------------------------------------------------------------------
   QAction* helpAboutSlicerAppAction = new QAction(mainWindow);
-  helpAboutSlicerAppAction->setObjectName("HelpAboutCustomAppIMSTKAndVTKOpenVRAppAction");
+  helpAboutSlicerAppAction->setObjectName("HelpAboutCustomAppIMSTKAppAction");
   helpAboutSlicerAppAction->setText("About " + app->applicationName());
 
   //----------------------------------------------------------------------------
@@ -106,31 +106,31 @@ void qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate::setupUi(QMainWindow * main
 }
 
 //-----------------------------------------------------------------------------
-// qCustomAppIMSTKAndVTKOpenVRAppMainWindow methods
+// qCustomAppIMSTKAppMainWindow methods
 
 //-----------------------------------------------------------------------------
-qCustomAppIMSTKAndVTKOpenVRAppMainWindow::qCustomAppIMSTKAndVTKOpenVRAppMainWindow(QWidget* windowParent)
-  : Superclass(new qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate(*this), windowParent)
+qCustomAppIMSTKAppMainWindow::qCustomAppIMSTKAppMainWindow(QWidget* windowParent)
+  : Superclass(new qCustomAppIMSTKAppMainWindowPrivate(*this), windowParent)
 {
-  Q_D(qCustomAppIMSTKAndVTKOpenVRAppMainWindow);
+  Q_D(qCustomAppIMSTKAppMainWindow);
   d->init();
 }
 
 //-----------------------------------------------------------------------------
-qCustomAppIMSTKAndVTKOpenVRAppMainWindow::qCustomAppIMSTKAndVTKOpenVRAppMainWindow(
-  qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate* pimpl, QWidget* windowParent)
+qCustomAppIMSTKAppMainWindow::qCustomAppIMSTKAppMainWindow(
+  qCustomAppIMSTKAppMainWindowPrivate* pimpl, QWidget* windowParent)
   : Superclass(pimpl, windowParent)
 {
   // init() is called by derived class.
 }
 
 //-----------------------------------------------------------------------------
-qCustomAppIMSTKAndVTKOpenVRAppMainWindow::~qCustomAppIMSTKAndVTKOpenVRAppMainWindow()
+qCustomAppIMSTKAppMainWindow::~qCustomAppIMSTKAppMainWindow()
 {
 }
 
 //-----------------------------------------------------------------------------
-void qCustomAppIMSTKAndVTKOpenVRAppMainWindow::on_HelpAboutCustomAppIMSTKAndVTKOpenVRAppAction_triggered()
+void qCustomAppIMSTKAppMainWindow::on_HelpAboutCustomAppIMSTKAppAction_triggered()
 {
   qSlicerAboutDialog about(this);
   about.setLogo(QPixmap(":/Logo.png"));

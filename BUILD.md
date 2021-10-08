@@ -1,7 +1,7 @@
-Build and Package CustomAppIMSTKAndVTKOpenVR
+Build and Package CustomAppIMSTK
 ==============================
 
-This document summarizes how to build and package CustomAppIMSTKAndVTKOpenVR on Windows. Instructions for Linux and macOS are similar.
+This document summarizes how to build and package CustomAppIMSTK on Windows. Instructions for Linux and macOS are similar.
 For more details, see [3D Slicer Developer Wiki](http://wiki.slicer.org/slicerWiki/index.php/Documentation/Nightly/Developers)
 
 Prerequisites 
@@ -29,7 +29,7 @@ Prerequisites
     * Setup [your git username](https://help.github.com/articles/setting-your-username-in-git) and [your git email](https://help.github.com/articles/setting-your-email-in-git).
 
     * If not already done, email `FirstName LastName <firstname.lastname@Kitware.com>` to be granted access to
-    the [Kitware/CustomAppIMSTKAndVTKOpenVR](https://github.com/Kitware/CustomAppIMSTKAndVTKOpenVR) repository.
+    the [Kitware/CustomAppIMSTK](https://github.com/Kitware/CustomAppIMSTK) repository.
 
 Checkout
 --------
@@ -41,7 +41,7 @@ Checkout
 cd /c
 mkdir W
 cd /c/W
-git clone https://github.com/Kitware/CustomAppIMSTKAndVTKOpenVR.git CustomAppIMSTKAndVTKOpenVR
+git clone https://github.com/Kitware/CustomAppIMSTK.git CustomAppIMSTK
 ```
 
 Note: use short source and build directory names to avoid the [maximum path length limitation](http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247%28v=vs.85%29.aspx#maxpath).
@@ -52,21 +52,21 @@ Note: The build process will take approximately 3 hours.
 
 <b>Option 1: CMake GUI and Visual Studio (Recommended)</b>
 
-1. Start [CMake GUI](https://cmake.org/runningcmake/), select source directory `C:\W\CustomAppIMSTKAndVTKOpenVR` and set build directory to `C:\W\CustomAppIMSTKAndVTKOpenVR-rel`.
+1. Start [CMake GUI](https://cmake.org/runningcmake/), select source directory `C:\W\CustomAppIMSTK` and set build directory to `C:\W\CustomAppIMSTK-rel`.
 2. Add an entry `Qt5_DIR` pointing to `C:/Qt/${QT_VERSION}/${COMPILER}/lib/cmake/Qt5`.
 2. Generate the project.
-3. Open `C:\W\CustomAppIMSTKAndVTKOpenVR-rel\CustomAppIMSTKAndVTKOpenVR.sln`, select `Release` and build the project.
+3. Open `C:\W\CustomAppIMSTK-rel\CustomAppIMSTK.sln`, select `Release` and build the project.
 
 <b>Option 2: Command Line</b>
 
 1. Start the [Command Line Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq)
-2. Configure and build the project in `C:\W\CustomAppIMSTKAndVTKOpenVR-rel` by typing the following commands:
+2. Configure and build the project in `C:\W\CustomAppIMSTK-rel` by typing the following commands:
 
 ```bat
 cd C:\W\
-mkdir CustomAppIMSTKAndVTKOpenVR-rel
-cd CustomAppIMSTKAndVTKOpenVR-rel
-cmake -G "Visual Studio 14 2015 Win64" -DQt5_DIR:PATH=`C:/Qt/${QT_VERSION}/${COMPILER}/lib/cmake/Qt5 ..\CustomAppIMSTKAndVTKOpenVR
+mkdir CustomAppIMSTK-rel
+cd CustomAppIMSTK-rel
+cmake -G "Visual Studio 14 2015 Win64" -DQt5_DIR:PATH=`C:/Qt/${QT_VERSION}/${COMPILER}/lib/cmake/Qt5 ..\CustomAppIMSTK
 cmake --build . --config Release
 ```
 
@@ -77,7 +77,7 @@ Install [NSIS 2](http://sourceforge.net/projects/nsis/files/)
 
 <b>Option 1: CMake and Visual Studio (Recommended)</b>
 
-1. In the `C:\W\CustomAppIMSTKAndVTKOpenVR-rel\Slicer-build` directory, open `Slicer.sln` and build the `PACKAGE` target
+1. In the `C:\W\CustomAppIMSTK-rel\Slicer-build` directory, open `Slicer.sln` and build the `PACKAGE` target
 
 <b>Option 2: Command Line</b>
 
@@ -85,7 +85,7 @@ Install [NSIS 2](http://sourceforge.net/projects/nsis/files/)
 2. Build the `PACKAGE` target by typing the following commands:
 
 ```bat
-cd C:\W\CustomAppIMSTKAndVTKOpenVR-rel\Slicer-build
+cd C:\W\CustomAppIMSTK-rel\Slicer-build
 cmake --build . --config Release --target PACKAGE
 ```
 

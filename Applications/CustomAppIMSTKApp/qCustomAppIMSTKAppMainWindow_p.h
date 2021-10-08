@@ -15,24 +15,24 @@
 
 ==============================================================================*/
 
-#ifndef __qCustomAppIMSTKAndVTKOpenVRAppMainWindow_p_h
-#define __qCustomAppIMSTKAndVTKOpenVRAppMainWindow_p_h
+#ifndef __qCustomAppIMSTKAppMainWindow_p_h
+#define __qCustomAppIMSTKAppMainWindow_p_h
 
-// CustomAppIMSTKAndVTKOpenVR includes
-#include "qCustomAppIMSTKAndVTKOpenVRAppMainWindow.h"
+// CustomAppIMSTK includes
+#include "qCustomAppIMSTKAppMainWindow.h"
 
 // Slicer includes
 #include "qSlicerMainWindow_p.h"
 
 //-----------------------------------------------------------------------------
-class Q_CUSTOMAPPIMSTKANDVTKOPENVR_APP_EXPORT qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate
+class Q_CUSTOMAPPIMSTKANDVTKOPENVR_APP_EXPORT qCustomAppIMSTKAppMainWindowPrivate
   : public qSlicerMainWindowPrivate
 {
-  Q_DECLARE_PUBLIC(qCustomAppIMSTKAndVTKOpenVRAppMainWindow);
+  Q_DECLARE_PUBLIC(qCustomAppIMSTKAppMainWindow);
 public:
   typedef qSlicerMainWindowPrivate Superclass;
-  qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate(qCustomAppIMSTKAndVTKOpenVRAppMainWindow& object);
-  virtual ~qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate();
+  qCustomAppIMSTKAppMainWindowPrivate(qCustomAppIMSTKAppMainWindow& object);
+  virtual ~qCustomAppIMSTKAppMainWindowPrivate();
 
   virtual void init();
   /// Reimplemented for custom behavior

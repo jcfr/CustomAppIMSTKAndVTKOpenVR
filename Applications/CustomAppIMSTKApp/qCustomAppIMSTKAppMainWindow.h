@@ -15,34 +15,34 @@
 
 ==============================================================================*/
 
-#ifndef __qCustomAppIMSTKAndVTKOpenVRAppMainWindow_h
-#define __qCustomAppIMSTKAndVTKOpenVRAppMainWindow_h
+#ifndef __qCustomAppIMSTKAppMainWindow_h
+#define __qCustomAppIMSTKAppMainWindow_h
 
-// CustomAppIMSTKAndVTKOpenVR includes
-#include "qCustomAppIMSTKAndVTKOpenVRAppExport.h"
-class qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate;
+// CustomAppIMSTK includes
+#include "qCustomAppIMSTKAppExport.h"
+class qCustomAppIMSTKAppMainWindowPrivate;
 
 // Slicer includes
 #include "qSlicerMainWindow.h"
 
-class Q_CUSTOMAPPIMSTKANDVTKOPENVR_APP_EXPORT qCustomAppIMSTKAndVTKOpenVRAppMainWindow : public qSlicerMainWindow
+class Q_CUSTOMAPPIMSTKANDVTKOPENVR_APP_EXPORT qCustomAppIMSTKAppMainWindow : public qSlicerMainWindow
 {
   Q_OBJECT
 public:
   typedef qSlicerMainWindow Superclass;
 
-  qCustomAppIMSTKAndVTKOpenVRAppMainWindow(QWidget *parent=0);
-  virtual ~qCustomAppIMSTKAndVTKOpenVRAppMainWindow();
+  qCustomAppIMSTKAppMainWindow(QWidget *parent=0);
+  virtual ~qCustomAppIMSTKAppMainWindow();
 
 public slots:
-  void on_HelpAboutCustomAppIMSTKAndVTKOpenVRAppAction_triggered();
+  void on_HelpAboutCustomAppIMSTKAppAction_triggered();
 
 protected:
-  qCustomAppIMSTKAndVTKOpenVRAppMainWindow(qCustomAppIMSTKAndVTKOpenVRAppMainWindowPrivate* pimpl, QWidget* parent);
+  qCustomAppIMSTKAppMainWindow(qCustomAppIMSTKAppMainWindowPrivate* pimpl, QWidget* parent);
 
 private:
-  Q_DECLARE_PRIVATE(qCustomAppIMSTKAndVTKOpenVRAppMainWindow);
-  Q_DISABLE_COPY(qCustomAppIMSTKAndVTKOpenVRAppMainWindow);
+  Q_DECLARE_PRIVATE(qCustomAppIMSTKAppMainWindow);
+  Q_DISABLE_COPY(qCustomAppIMSTKAppMainWindow);
 };
 
 #endif

@@ -15,8 +15,8 @@
 
 ==============================================================================*/
 
-// CustomAppIMSTKAndVTKOpenVR includes
-#include "qCustomAppIMSTKAndVTKOpenVRAppMainWindow.h"
+// CustomAppIMSTK includes
+#include "qCustomAppIMSTKAppMainWindow.h"
 #include "Widgets/qAppStyle.h"
 
 // Slicer includes
@@ -29,7 +29,7 @@ namespace
 //----------------------------------------------------------------------------
 int SlicerAppMain(int argc, char* argv[])
 {
-  typedef qCustomAppIMSTKAndVTKOpenVRAppMainWindow SlicerMainWindowType;
+  typedef qCustomAppIMSTKAppMainWindow SlicerMainWindowType;
 
   qSlicerApplicationHelper::preInitializeApplication(argv[0], new qAppStyle);
 

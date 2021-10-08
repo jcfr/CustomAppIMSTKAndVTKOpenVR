@@ -29,7 +29,7 @@
 // CTK includes
 #include <ctkCollapsibleButton.h>
 
-// CustomAppIMSTKAndVTKOpenVR includes
+// CustomAppIMSTK includes
 #include "qAppStyle.h"
 
 // --------------------------------------------------------------------------

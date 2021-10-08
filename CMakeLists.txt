@@ -24,11 +24,11 @@ endif()
 set(CMAKE_MODULE_PATH ${slicersources_SOURCE_DIR}/CMake ${CMAKE_MODULE_PATH})
 include(SlicerInitializeOSXVariables)
 
-project(CustomAppIMSTKAndVTKOpenVR)
+project(CustomAppIMSTK)
 
 # Configure Application
 set(Slicer_APPLICATIONS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Applications)
-set(Slicer_MAIN_PROJECT "CustomAppIMSTKAndVTKOpenVRApp")
+set(Slicer_MAIN_PROJECT "CustomAppIMSTKApp")
 
 # Set organization
 set(Slicer_ORGANIZATION_DOMAIN "kitware.com")
@@ -134,9 +134,9 @@ set(Slicer_QTSCRIPTEDMODULES_DISABLED
 
 # Enable/Disable Slicer custom modules: To create a new module, use the SlicerExtensionWizard.
 set(Slicer_EXTENSION_SOURCE_DIRS
-  #${CustomAppIMSTKAndVTKOpenVR_SOURCE_DIR}/Modules/CLI/MyCLIModule
-  #${CustomAppIMSTKAndVTKOpenVR_SOURCE_DIR}/Modules/Loadable/MyLoadableModule
-  ${CustomAppIMSTKAndVTKOpenVR_SOURCE_DIR}/Modules/Scripted/Home
+  #${CustomAppIMSTK_SOURCE_DIR}/Modules/CLI/MyCLIModule
+  #${CustomAppIMSTK_SOURCE_DIR}/Modules/Loadable/MyLoadableModule
+  ${CustomAppIMSTK_SOURCE_DIR}/Modules/Scripted/Home
   )
 
 # Add remote extension source directories

@@ -16,4 +16,4 @@
 #
 #============================================================================
 
-add_subdirectory(CustomAppIMSTKAndVTKOpenVRApp)
+add_subdirectory(CustomAppIMSTKApp)

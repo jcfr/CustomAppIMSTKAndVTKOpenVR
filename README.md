@@ -1,7 +1,7 @@
-CustomAppIMSTKAndVTKOpenVR by Kitware, Inc.
+CustomAppIMSTK by Kitware, Inc.
 ================================
 
 Customized version of Slicer
 
-![CustomAppIMSTKAndVTKOpenVR by Kitware, Inc.](Applications/CustomAppIMSTKAndVTKOpenVRApp/Resources/Images/LogoFull.png?raw=true)
+![CustomAppIMSTK by Kitware, Inc.](Applications/CustomAppIMSTKApp/Resources/Images/LogoFull.png?raw=true)
 

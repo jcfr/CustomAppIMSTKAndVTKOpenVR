@@ -18,8 +18,8 @@
 #ifndef __qAppStyle_h
 #define __qAppStyle_h
 
-// CustomAppIMSTKAndVTKOpenVR includes
-#include "qCustomAppIMSTKAndVTKOpenVRAppExport.h"
+// CustomAppIMSTK includes
+#include "qCustomAppIMSTKAppExport.h"
 
 // Slicer includes
 #include "qSlicerStyle.h"
