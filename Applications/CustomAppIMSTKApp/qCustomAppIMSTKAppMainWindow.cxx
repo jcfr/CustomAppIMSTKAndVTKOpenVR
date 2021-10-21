@@ -21,6 +21,7 @@
 
 // Qt includes
 #include <QDesktopWidget>
+#include <QLabel>
 
 // Slicer includes
 #include "qSlicerApplication.h"
@@ -77,8 +78,10 @@ void qCustomAppIMSTKAppMainWindowPrivate::setupUi(QMainWindow * mainWindow)
   //----------------------------------------------------------------------------
   mainWindow->setWindowIcon(QIcon(":/Icons/Medium/DesktopIcon.png"));
 
-  QPixmap logo(":/LogoFull.png");
-  this->LogoLabel->setPixmap(logo);
+  QLabel* logoLabel = new QLabel();
+  logoLabel->setObjectName("LogoLabel");
+  logoLabel->setPixmap(qMRMLWidget::pixmapFromIcon(QIcon(":/LogoFull.png")));
+  this->PanelDockWidget->setTitleBarWidget(logoLabel);
 
   // Hide the toolbars
   this->MainToolBar->setVisible(false);
