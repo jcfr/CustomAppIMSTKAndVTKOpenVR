@@ -4,6 +4,9 @@ set(${proj}_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj})
 set(${proj}_INSTALL_DIR ${${proj}_SOURCE_DIR})
 
 include(${iMSTK_SOURCE_DIR}/CMake/External/External_${proj}.cmake)
+if(NOT SB_SECOND_PASS)
+  return()
+endif()
 
 set(OpenVR_INCLUDE_DIR "${${proj}_INSTALL_DIR}/${OpenVR_INC_DIR}")
 set(OpenVR_LIBRARY "${${proj}_INSTALL_DIR}/${OpenVR_LIB_DIR}/${OpenVR_LIB_NAME}")
