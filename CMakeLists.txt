@@ -13,7 +13,7 @@ if(NOT DEFINED slicersources_SOURCE_DIR)
   # Download Slicer sources and set variables slicersources_SOURCE_DIR and slicersources_BINARY_DIR
   FetchContent_Populate(slicersources
     GIT_REPOSITORY git://github.com/Slicer/Slicer
-    GIT_TAG        7a532d54df88a5ac034966e8e04d4b4b23a0362c
+    GIT_TAG        44afaedc0aaa1c742e35e98f0eb79982c6817513
     GIT_PROGRESS   1
     )
 else()
@@ -29,7 +29,7 @@ set(${proj}_SOURCE_DIR "${CMAKE_BINARY_DIR}/${proj}")
 FetchContent_Populate(${proj}
   SOURCE_DIR     ${${proj}_SOURCE_DIR}
   GIT_REPOSITORY git://github.com/jcfr/iMSTK.git
-  GIT_TAG        e0a8b8898b32adeebdafd76ec4b201239e6e26c8  # update-build-system-to-streamline-application-integration
+  GIT_TAG        bd629db553528aa7c5c45d17d732e15ac11304eb  # update-build-system-to-streamline-application-integration
   GIT_PROGRESS   1
   QUIET
   )

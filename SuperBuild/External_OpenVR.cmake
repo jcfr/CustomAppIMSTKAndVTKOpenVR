@@ -16,11 +16,7 @@ mark_as_superbuild(
     ${proj}_INCLUDE_DIR:PATH
     ${proj}_LIBRARY:FILEPATH
   PROJECTS
-    ${SUPERBUILD_TOPLEVEL_PROJECT}
     iMSTK
-    CTK
-    ITK
-    SlicerExecutionModel
     VTK
   )
 
