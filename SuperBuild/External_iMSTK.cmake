@@ -1,9 +1,5 @@
 set(proj iMSTK)
 
-set(_slicer_depends
-  tbb
-  VTK
-  )
 set(_imstk_depends
   Assimp
   g3log
@@ -11,12 +7,6 @@ set(_imstk_depends
   Libusb
   OpenVR
   VegaFEM
-  )
-
-# Set dependency list
-set(${proj}_DEPENDS
-  ${_slicer_depends}
-  ${_imstk_depends}
   )
 
 if(NOT SB_SECOND_PASS)
@@ -30,6 +20,18 @@ if(NOT SB_SECOND_PASS)
     PROJECTS
       ${_imstk_depends}
   )
+endif()
+
+# Set dependency list
+set(${proj}_DEPENDS
+  ${_imstk_depends}
+  )
+
+if(Slicer_SOURCE_DIR)
+  list(APPEND ${proj}_DEPENDS
+    tbb
+    VTK
+    )
 endif()
 
 # Include dependent projects if any
