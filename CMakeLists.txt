@@ -20,24 +20,7 @@ else()
   set(slicersources_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/slicersources-subbuild)
 endif()
 
-# Fetch sources of external projects providing CMake modules
-# required at configuration time.
-
-# iMSTK
-set(proj "iMSTK")
-set(${proj}_SOURCE_DIR "${CMAKE_BINARY_DIR}/${proj}")
-FetchContent_Populate(${proj}
-  SOURCE_DIR     ${${proj}_SOURCE_DIR}
-  GIT_REPOSITORY git://github.com/jcfr/iMSTK.git
-  GIT_TAG        0ffa63e9b6e44f986b385bda4aaec4a17956e842  # update-build-system-to-streamline-application-integration
-  GIT_PROGRESS   1
-  QUIET
-  )
-message(STATUS "Remote - ${proj} [OK]")
-
 set(CMAKE_MODULE_PATH
-  ${iMSTK_SOURCE_DIR}/CMake
-  ${iMSTK_SOURCE_DIR}/CMake/Utilities
   ${slicersources_SOURCE_DIR}/CMake
   ${CMAKE_MODULE_PATH}
   )
@@ -64,24 +47,8 @@ set(SUPERBUILD_TOPLEVEL_PROJECT Slicer)
 set(EXTERNAL_PROJECT_ADDITIONAL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/SuperBuild")
 include(ExternalProjectDependency)
 
-# Additional external project dependencies
-ExternalProject_Add_Dependencies(VTK
-  DEPENDS
-    OpenVR
-  )
-
-# Additional external project options
-set(VTK_MODULE_ENABLE_VTK_RenderingExternal YES)
-mark_as_superbuild(
-  VARS
-    VTK_MODULE_ENABLE_VTK_RenderingExternal:STRING
-  PROJECTS
-    VTK
-  )
-
 # Additional Slicer dependencies looked up in EXTERNAL_PROJECT_ADDITIONAL_DIR
 set(Slicer_ADDITIONAL_DEPENDENCIES
-  iMSTK
   )
 
 #  Enable listed remote modules from ITK 
@@ -178,18 +145,20 @@ set(Slicer_EXTENSION_SOURCE_DIRS
 
 # Add remote extension source directories
 
-# SlicerOpenIGTLink
-#set(extension_name "SlicerOpenIGTLink")
-#set(${extension_name}_SOURCE_DIR "${CMAKE_BINARY_DIR}/${extension_name}")
-#FetchContent_Populate(${extension_name}
-#  SOURCE_DIR     ${${extension_name}_SOURCE_DIR}
-#  GIT_REPOSITORY ${EP_GIT_PROTOCOL}://github.com/openigtlink/SlicerOpenIGTLink.git
-#  GIT_TAG        2b92f7b1ffe02403109b671f28424e8770e902a0
-#  GIT_PROGRESS   1
-#  QUIET
-#  )
-#list(APPEND Slicer_EXTENSION_SOURCE_DIRS ${${extension_name}_SOURCE_DIR})
+# SlicerIMSTK
+set(extension_name "SlicerIMSTK")
+set(${extension_name}_SOURCE_DIR "${CMAKE_BINARY_DIR}/${extension_name}")
+FetchContent_Populate(${extension_name}
+  SOURCE_DIR     ${${extension_name}_SOURCE_DIR}
+  GIT_REPOSITORY ${EP_GIT_PROTOCOL}://github.com/jcfr/SlicerIMSTK.git
+  GIT_TAG        d9aace6c7bffe3b147a72125bcd22b6a48f08efd  # support-custom-app-bundling-and-standalone-extension-build
+  GIT_PROGRESS   1
+  QUIET
+  )
+message(STATUS "Remote - ${extension_name} [OK]")
+list(APPEND Slicer_EXTENSION_SOURCE_DIRS ${${extension_name}_SOURCE_DIR})
 
+include(${SlicerIMSTK_SOURCE_DIR}/SuperBuildPrerequisites.cmake)
 
 # Add Slicer sources
 add_subdirectory(${slicersources_SOURCE_DIR} ${slicersources_BINARY_DIR})
