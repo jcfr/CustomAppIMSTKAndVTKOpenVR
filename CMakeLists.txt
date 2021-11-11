@@ -29,10 +29,11 @@ set(${proj}_SOURCE_DIR "${CMAKE_BINARY_DIR}/${proj}")
 FetchContent_Populate(${proj}
   SOURCE_DIR     ${${proj}_SOURCE_DIR}
   GIT_REPOSITORY git://github.com/jcfr/iMSTK.git
-  GIT_TAG        bd629db553528aa7c5c45d17d732e15ac11304eb  # update-build-system-to-streamline-application-integration
+  GIT_TAG        0ffa63e9b6e44f986b385bda4aaec4a17956e842  # update-build-system-to-streamline-application-integration
   GIT_PROGRESS   1
   QUIET
   )
+message(STATUS "Remote - ${proj} [OK]")
 
 set(CMAKE_MODULE_PATH
   ${iMSTK_SOURCE_DIR}/CMake

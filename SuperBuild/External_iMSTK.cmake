@@ -27,10 +27,18 @@ set(${proj}_DEPENDS
   ${_imstk_depends}
   )
 
-if(Slicer_SOURCE_DIR)
+if(DEFINED Slicer_SOURCE_DIR)
+  # Extension is bundled in a custom application
   list(APPEND ${proj}_DEPENDS
     tbb
     VTK
+    )
+else()
+  # Extension is build standalone against Slicer itself built
+  # against VTK without the relevant modules enabled.
+  list(APPEND ${proj}_DEPENDS
+    vtkRenderingExternal
+    vtkRenderingOpenVR
     )
 endif()
 
@@ -56,6 +64,24 @@ if(NOT DEFINED ${proj}_DIR AND NOT ${SUPERBUILD_TOPLEVEL_PROJECT}_USE_SYSTEM_${p
   set(EP_SOURCE_DIR ${${proj}_SOURCE_DIR})
   set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
 
+  set(tbb_ROOT_DIR ${TBB_DIR}/..)
+  set(tbb_LIB_DIR "lib/intel64/gcc4.8")
+
+  set(EXTERNAL_PROJECT_OPTIONAL_CMAKE_CACHE_ARGS)
+  foreach(_name IN ITEMS
+    vtkRenderingExternal
+    vtkRenderingOpenVR
+    )
+    list(APPEND EXTERNAL_PROJECT_OPTIONAL_CMAKE_CACHE_ARGS
+      -D${_name}_DIR:PATH=${${_name}_DIR}
+      )
+    set(_enabled "OFF")
+    if(TARGET ${_name})
+      set(_enabled "ON")
+    endif()
+    ExternalProject_Message(${proj} "${proj}[${_name}:${_enabled}]")
+  endforeach()
+
   ExternalProject_Add(${proj}
     ${${proj}_EP_ARGS}
     SOURCE_DIR ${EP_SOURCE_DIR}
@@ -80,17 +106,21 @@ if(NOT DEFINED ${proj}_DIR AND NOT ${SUPERBUILD_TOPLEVEL_PROJECT}_USE_SYSTEM_${p
       -DiMSTK_USE_MODEL_REDUCTION:BOOL=OFF
       # Dependencies
       -DVTK_DIR:PATH=${VTK_DIR}
-      -Dtbb_ROOT_DIR:PATH=${TBB_INSTALL_DIR}/tbb${tbb_ver}
-      -Dtbb_LIB_DIR:STRING=${tbb_libdir}
+      -Dtbb_ROOT_DIR:PATH=${tbb_ROOT_DIR}
+      -Dtbb_LIB_DIR:STRING=${tbb_LIB_DIR}
+      ${EXTERNAL_PROJECT_OPTIONAL_CMAKE_CACHE_ARGS}
     INSTALL_COMMAND ""
     DEPENDS
       ${${proj}_DEPENDS}
     )
-  set(${proj}_DIR ${${proj}_BINARY_DIR}/InnerBuild)
+  set(${proj}_DIR ${EP_BINARY_DIR})
   mark_as_superbuild(${proj}_DIR)
 
+  #-----------------------------------------------------------------------------
+  # Launcher setting specific to build tree
+
   # library paths
-  # \todo: <CMAKE_CFG_INTDIR doesn't work for now. Just add the types manually
+  # \todo: <CMAKE_CFG_INTDIR> doesn't work for now. Just add the types manually
   # See: https://issues.slicer.org/view.php?id=4682
   set(${proj}_LIBRARY_PATHS_LAUNCHER_BUILD
     ${${proj}_RUNTIME_OUTPUT_DIRECTORY}/Debug
