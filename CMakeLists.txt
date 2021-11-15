@@ -151,7 +151,7 @@ set(${extension_name}_SOURCE_DIR "${CMAKE_BINARY_DIR}/${extension_name}")
 FetchContent_Populate(${extension_name}
   SOURCE_DIR     ${${extension_name}_SOURCE_DIR}
   GIT_REPOSITORY ${EP_GIT_PROTOCOL}://github.com/jcfr/SlicerIMSTK.git
-  GIT_TAG        56edced9b7496284a448cd34f2cad85d5141006c  # support-custom-app-bundling-and-standalone-extension-build
+  GIT_TAG        e2cf3cc1dfb03257f45888979aef5e2631776d09  # support-custom-app-bundling-and-standalone-extension-build
   GIT_PROGRESS   1
   QUIET
   )
